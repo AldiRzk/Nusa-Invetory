@@ -23,9 +23,6 @@
     <title>
         Nusa Inventory
     </title>
-    <!--     Fonts and icons     -->
-    {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> --}}
-    <!-- Nucleo Icons -->
     <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/sweetalert2-11.14.4/package/dist/sweetalert2.min.css') }}" rel="stylesheet" />
@@ -34,6 +31,7 @@
     <script src="{{ asset('assets/DataTables/datatables.min.css') }}" crossorigin="anonymous"></script>
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
@@ -77,6 +75,7 @@
     <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/sweetalert2-11.14.4/package/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/DataTables/datatables.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         new DataTable('#data-table', {
             responsive: true,
@@ -228,6 +227,23 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  <script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "-- Select Supplier --",
+            allowClear: true
+        });
+    });
+</script>
+<script>
+    $('#exampleModal').on('shown.bs.modal', function () {
+        $('.select2').select2({
+            dropdownParent: $('#exampleModal'),
+            placeholder: "-- Select Supplier --",
+            allowClear: true
+        });
+    });
+</script>
 </body>
 
 </html>

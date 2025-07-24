@@ -20,7 +20,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Category Name</label>
-                        <select name="category_id" id="" class="form-control">
+                        <select name="category_id" id="" class="form-control select2">
                                 <option value="" hidden>-- Select Role --</option>
                             @foreach ($category as $data_category)
                                 <option value="{{ $data_category->id }}">{{ $data_category->name }}</option>

@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <label>Product</label>
-                                <select name="product_id" class="form-control">
+                                <select name="product_id" class="form-control select2">
                                     <option value="">-- Select Product --</option>
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}">{{ $product->name }} - {{ $product->unit }}
