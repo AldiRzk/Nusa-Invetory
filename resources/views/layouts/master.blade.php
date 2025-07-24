@@ -230,7 +230,7 @@
   <script>
     $(document).ready(function() {
         $('.select2').select2({
-            placeholder: "-- Select Supplier --",
+            placeholder: "-- Select --",
             allowClear: true
         });
     });
@@ -239,7 +239,7 @@
     $('#exampleModal').on('shown.bs.modal', function () {
         $('.select2').select2({
             dropdownParent: $('#exampleModal'),
-            placeholder: "-- Select Supplier --",
+            placeholder: "-- Select --",
             allowClear: true
         });
     });

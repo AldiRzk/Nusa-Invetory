@@ -38,7 +38,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'description' => $request->description,
         ]);
-        return redirect('/category')->with('success', 'Category has been successfully created');
+        return redirect()->back()->with('success', 'Category has been successfully created');
     }
 
     /**
@@ -71,7 +71,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'description' => $request->description,
         ]);
-        return redirect('/category')->with('scucces', 'Category has been successfully updated');
+        return redirect('/category')->with('success', 'Category has been successfully updated');
     }
 
     /**
