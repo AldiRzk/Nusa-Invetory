@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -60,7 +61,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::find($id);
-        return view('home.user.edit',compact('user'));
+        return view('home.user.edit', compact('user'));
     }
 
     /**
@@ -71,17 +72,25 @@ class UserController extends Controller
         $user = User::find($id);
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email','unique:users,email' . $user->id,
+            'email' => 'required|string|email',
+            'unique:users,email' . $user->id,
             'password' => 'nullable|string|min:8',
             'role' => 'required'
         ]);
 
-        User::find($id)->update([
-           'name' => $request->name,
+        $user->update([
+            'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
             'role' => $request->role
         ]);
+        if (Auth::id() == $user->id) {
+            Auth::logout(); // Paksa logout
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect('/login')->with('error', 'Your data has changed. Please log in again.');
+        }
         return redirect('/user')->with('success', 'User has been successfully updated');
     }
 
